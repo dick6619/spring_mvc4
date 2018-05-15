@@ -65,3 +65,20 @@ INSERT INTO `BOOK` (`BOOK_NO`,`BOOK_NAME`) VALUES (14,'JDBC');
 INSERT INTO `BOOK` (`BOOK_NO`,`BOOK_NAME`) VALUES (15,'JQuery');
 INSERT INTO `BOOK` (`BOOK_NO`,`BOOK_NAME`) VALUES (16,'AJAX');
 INSERT INTO `BOOK` (`BOOK_NO`,`BOOK_NAME`) VALUES (17,'nodejs');
+
+--DROP TABLE ADT_REPORT
+CREATE TABLE ADT_REPORT (
+    meta_active CHAR(1) DEFAULT 'Y',
+    meta_update_dt DATETIME,
+    meta_sys CHAR(3),
+    audit_who CHAR(20),
+    audit_what_no CHAR(4),
+    audit_when_start DATETIME,
+    audit_when_end DATETIME,
+    audit_where_no CHAR(4),
+    audit_criteria INT,
+    audit_rpt_content1 TEXT,
+    PRIMARY KEY (audit_who , audit_what_no , audit_when_start)
+);
+create index idx_adt_report_1 on adt_report(audit_what_no);
+create index idx_adt_report_2 on adt_report(audit_when_start);
