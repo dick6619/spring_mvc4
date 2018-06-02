@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/batch
+			http://www.springframework.org/schema/batch/spring-batch.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 	 
+		秒 0-59 , - * /  
+		分 0-59 , - * /  
+		小时 0-23 , - * /  
+		日期 1-31 , - * ? / L W C  
+		月份 1-12 或者 JAN-DEC , - * /  
+		星期 1-7 或者 SUN-SAT , - * ? / L C #  
+		年（可选） 留空, 1970-2099 , - * /   
+	-->
+<!-- 	<bean id="schVilAdtJob001" class="gov.mvdis.m3.batch.ScheduleJob"> -->
+<!-- 		<property name="batchJobId" value="jobVilAdt001" /> -->
+<!-- 		<property name="cronExpression" value="0 0 0 1 * ?" /> -->
+<!-- 		<property name="cronExpression" value="0 0/5 * * * ?" /> -->
+<!-- 		<property name="autoNewJobInstance" value="true" /> -->
+<!-- 	</bean> -->
+
+
+<!-- 	<job id="jobVilAdt001" xmlns="http://www.springframework.org/schema/batch"> -->
+<!-- 		<step id="jobVilAdt001Step"> -->
+<!-- 			<tasklet ref="jobVilAdt001Tasklet" transaction-manager="transactionManager"> -->
+<!-- 				<transaction-attributes propagation="SUPPORTS" timeout="18000" /> -->
+<!-- 			</tasklet> -->
+<!-- 		</step> -->
+<!-- 	</job> -->
+<!-- 	<bean id="jobVilAdt001Tasklet" class="gov.mvdis.m3.van.batch.jobAdt.JobAdt001Tasklet" /> -->
+</beans>
