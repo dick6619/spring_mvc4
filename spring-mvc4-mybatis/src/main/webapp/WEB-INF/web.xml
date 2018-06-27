@@ -45,7 +45,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 <!-- 		    classpath*:/META-INF/spring/*.xml -->
-		    classpath*:/META-INF/spring/*.xml classpath*:/META-INF/batch/*.xml
+		    classpath*:/META-INF/spring/*.xml
+		    classpath*:/META-INF/batch/*/*.xml
 		</param-value>
 	</context-param>
 

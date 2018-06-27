@@ -10,41 +10,49 @@
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context.xsd
 			">
-	
-	<!-- Run the job every 5 seconds -->
+	<!-- 一個job只能綁定一個trigger -->
+	<!-- Run the job every 10 seconds -->
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail" />
-		<property name="cronExpression" value="0/10 * * * * ?" />
+		<property name="cronExpression" value="0/2 * * * * ?" />
 	</bean>
 	
+	<!-- jobDetail內全域變數無法使用autowire，必須靠jobDataMap注入 -->
 	<!-- For times when you need more complex processing, passing data to the scheduled job -->
 	<bean name="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp" />
 		<property name="jobDataMap">
 			<map>
+			    <!-- 需實作序列化 -->
 				<entry key="printMessege" value-ref="printMessege" />
+				<entry key="jobID" value="messegePrintServiceImpl" />
 			</map>
 		</property>
+		<!--  -->
+		<property name="durability" value="true" />
 	</bean>
 	<bean id="printMessege" class="com.iii.emp.domain.PrintMessege" />
-<!-- 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract = "true"> -->
+	
 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger"/>
             </list>
         </property>
+        <!-- 資料庫存取觸發時間等等相關資訊(實現永續化) -->
         <property name="dataSource" ref="dataSource"/>
         <property name="transactionManager" ref="transactionManager"/>
 <!--         <property name="jobFactory"> -->
 <!--             <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory"/> -->
 <!--         </property> -->
+        <!-- 可以拿到applicationContext -->
         <property name="applicationContextSchedulerContextKey" value="applicationContext" />
-<!--         <property name="overwriteExistingJobs" value="true" /> -->
-<!--         <property name="waitForJobsToCompleteOnShutdown" value="false" /> -->
+        <!-- 覆蓋原來存在的實體 -->
+        <property name="overwriteExistingJobs" value="true" />
+        <property name="waitForJobsToCompleteOnShutdown" value="false" />
        
     </bean>
-    <!-- 估計實體一直被生成，導致無法正確執行排程，須研究修復 -->
+    <!-- 設定及SQL部分 -->
     <!-- quartz.properties -->
     <!-- org.quartz.quartz.properties -->
     <!-- insert sql -->

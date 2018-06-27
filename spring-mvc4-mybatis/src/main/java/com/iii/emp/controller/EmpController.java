@@ -2,6 +2,8 @@ package com.iii.emp.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,11 @@ import com.iii.emp.service.EmpService;
 @RequestMapping("/employee")
 public class EmpController {
 
-	@Resource
+//	@Resource
+	@Autowired
+	@Qualifier("empServiceImpl")
 	private EmpService empService;
-	@Resource
+	@Resource(name = "deptServiceImpl")
 	private DeptService deptService;
 
 	@GetMapping("/emps")
