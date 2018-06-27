@@ -43,7 +43,10 @@
 	<!-- # contextLoaderListener context configLocation -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:/META-INF/spring/*.xml</param-value>
+		<param-value>
+<!-- 		    classpath*:/META-INF/spring/*.xml -->
+		    classpath*:/META-INF/spring/*.xml classpath*:/META-INF/batch/*.xml
+		</param-value>
 	</context-param>
 
 	<!-- # spring encoding filter -->

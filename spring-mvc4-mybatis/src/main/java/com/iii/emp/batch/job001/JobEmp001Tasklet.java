@@ -10,10 +10,7 @@ public class JobEmp001Tasklet implements Tasklet {
 
 	@Override
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
+//		return RepeatStatus.FINISHED;
 	}
-
-	// (Map) jobDataMap.get("batchJobParameters")
-	// jobDataMap.getLongValue("jobScheduleId")
 }

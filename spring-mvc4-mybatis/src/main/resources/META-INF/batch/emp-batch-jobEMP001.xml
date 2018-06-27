@@ -35,4 +35,47 @@
 <!-- 		</step> -->
 <!-- 	</job> -->
 <!-- 	<bean id="jobVilAdt001Tasklet" class="gov.mvdis.m3.van.batch.jobAdt.JobAdt001Tasklet" /> -->
+
+    <!-- Run the job every 5 seconds -->
+<!-- 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> -->
+<!-- 		<property name="jobDetail" ref="jobDetail" /> -->
+<!-- 		<property name="cronExpression" value="0/5 * * * * ?" /> -->
+<!-- 	</bean> -->
+	<!-- For times when you need more complex processing, passing data to the scheduled job -->
+<!-- 	<bean name="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean"> -->
+<!-- 		<property name="jobClass" value="com.iii.framework.core.springbatch.quartz.ScheduledJob" /> -->
+<!-- 		<property name="jobDataMap"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="jobID" value-ref="emp001" /> -->
+<!-- 				<entry key="jobLauncher" value-ref="jobLauncher" /> -->
+<!-- 				<entry key="jobRegistry" value-ref="jobRegistry" /> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 		<property name="durability" value="true" /> -->
+<!-- 	</bean> -->
+<!-- 	<batch:job id="emp001"> -->
+<!-- 		<batch:step id="step1"> -->
+<!-- 			<batch:tasklet ref="emp001Tasklet"/> -->
+<!-- 		</batch:step> -->
+<!-- 	</batch:job> -->
+<!-- 	<bean id="emp001Tasklet" class="com.iii.emp.batch.job001.JobEmp001Tasklet" /> -->
+	
+<!-- 	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher"> -->
+<!-- 		<property name="jobRepository" ref="jobRepository" /> -->
+<!-- 	</bean> -->
+	
+	<!-- spring batch context -->
+<!-- 	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"> -->
+<!-- 	    <property name="transactionManager" ref="transactionManager" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" /> -->
+	
+	<!-- Must set this -->
+<!-- 	<bean class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor"> -->
+<!-- 		<property name="jobRegistry" ref="jobRegistry" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry" /> -->
+		
+		
+		
 </beans>

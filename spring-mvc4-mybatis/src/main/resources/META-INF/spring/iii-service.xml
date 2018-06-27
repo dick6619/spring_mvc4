@@ -13,6 +13,9 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.iii.emp.service" />
+	<!-- 20180627 -->
+	<context:component-scan base-package="com.iii.emp.rpt.service" />
+	<context:component-scan base-package="com.iii.emp.batch.service" />
 	
 	<task:annotation-driven/>
 
