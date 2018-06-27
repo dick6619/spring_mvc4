@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/batch
 			http://www.springframework.org/schema/batch/spring-batch.xsd
 			http://www.springframework.org/schema/context
-			http://www.springframework.org/schema/context/spring-context.xsd">
+			http://www.springframework.org/schema/context/spring-context.xsd
+			">
 	
 	<!-- Run the job every 5 seconds -->
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail" />
-		<property name="cronExpression" value="0/5 * * * * ?" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
 	</bean>
 	
 	<!-- For times when you need more complex processing, passing data to the scheduled job -->
@@ -25,14 +27,26 @@
 		</property>
 	</bean>
 	<bean id="printMessege" class="com.iii.emp.domain.PrintMessege" />
+<!-- 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" abstract = "true"> -->
 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger"/>
             </list>
         </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+<!--         <property name="jobFactory"> -->
+<!--             <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory"/> -->
+<!--         </property> -->
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+<!--         <property name="overwriteExistingJobs" value="true" /> -->
+<!--         <property name="waitForJobsToCompleteOnShutdown" value="false" /> -->
+       
     </bean>
-
-
-
+    <!-- 估計實體一直被生成，導致無法正確執行排程，須研究修復 -->
+    <!-- quartz.properties -->
+    <!-- org.quartz.quartz.properties -->
+    <!-- insert sql -->
+    <!-- org.quartz.impl.jdbcjobstore -->
 </beans>
