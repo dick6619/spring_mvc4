@@ -25,7 +25,7 @@ public class JobEmp2 extends QuartzJobBean {
 					.get("applicationContext");
 			// 用applicationContext.getBean()得到的實例
 			MessegePrintService messegePrintService = (MessegePrintService) applicationContext.getBean(serviceID);
-			System.out.println(messegePrintService.getMessege());
+			System.out.println(messegePrintService.printMessege());
 		} catch (Exception e) {
 			//
 		}

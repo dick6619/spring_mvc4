@@ -10,7 +10,7 @@ import com.iii.emp.batch.service.MessegePrintService;
 public class MessegePrintServiceImpl implements MessegePrintService {
 
 	@Override
-	public String getMessege() {
+	public String printMessege() {
 		// TODO Auto-generated method stub
 		return "jobEmp2 run application.getBean(MessegePrintService)...and use service" + "(" + new Date() + ")";
 	}
