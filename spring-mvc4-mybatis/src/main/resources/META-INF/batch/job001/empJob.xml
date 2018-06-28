@@ -10,33 +10,51 @@
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context.xsd
 			">
-	<!-- 一個job只能綁定一個trigger -->
-	<!-- Run the job every 10 seconds -->
-	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="jobDetail" />
-		<property name="cronExpression" value="0/2 * * * * ?" />
-	</bean>
+			
 	
-	<!-- jobDetail內全域變數無法使用autowire，必須靠jobDataMap注入 -->
-	<!-- For times when you need more complex processing, passing data to the scheduled job -->
-	<bean name="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<!-- JobDetailFactory -->
+	<!-- job1 -->
+	<bean name="job1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp" />
 		<property name="jobDataMap">
 			<map>
 			    <!-- 需實作序列化 -->
 				<entry key="printMessege" value-ref="printMessege" />
-				<entry key="jobID" value="messegePrintServiceImpl" />
 			</map>
 		</property>
-		<!--  -->
 		<property name="durability" value="true" />
 	</bean>
 	<bean id="printMessege" class="com.iii.emp.domain.PrintMessege" />
 	
+	<bean name="job2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp2" />
+		<property name="jobDataMap">
+			<map>
+			    <!-- application get beanName -->
+				<entry key="serviceID" value="messegePrintService" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<!-- CronTriggerFactory -->
+	<!-- trigger1 -->
+	<bean id="trigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job1" />
+		<property name="cronExpression" value="0/4 * * * * ?" />
+	</bean>
+	<!-- trigger2 -->
+	<bean id="trigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job2" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
+	</bean>
+	
+	<!-- schedulerFactory -->
 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="cronTrigger"/>
+                <ref bean="trigger1"/>
+                <ref bean="trigger2"/>
             </list>
         </property>
         <!-- 資料庫存取觸發時間等等相關資訊(實現永續化) -->

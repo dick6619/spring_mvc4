@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.iii.emp.batch.service.MessegePrintService;
 
-@Service
+@Service("messegePrintService")
 public class MessegePrintServiceImpl implements MessegePrintService {
 
 	@Override
 	public String getMessege() {
 		// TODO Auto-generated method stub
-		return "MessegePrintService" + "(" + new Date() + ")";
+		return "jobEmp2 run application.getBean(MessegePrintService)...and use service" + "(" + new Date() + ")";
 	}
 
 }

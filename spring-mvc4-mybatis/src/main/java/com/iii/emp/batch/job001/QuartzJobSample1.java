@@ -10,7 +10,7 @@ public class QuartzJobSample1 extends QuartzJobBean {
 
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		System.out.println("QuartzJobSample1~: " + new Date());
+		System.out.println("QuartzJobSample(1)~: " + new Date());
 	}
 	
 	

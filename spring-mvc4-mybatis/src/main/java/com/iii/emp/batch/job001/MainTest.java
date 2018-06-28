@@ -1,7 +1,5 @@
 package com.iii.emp.batch.job001;
 
-
-import org.quartz.CronTrigger;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
