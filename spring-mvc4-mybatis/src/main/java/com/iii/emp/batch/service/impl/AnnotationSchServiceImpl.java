@@ -10,7 +10,7 @@ import com.iii.emp.batch.service.AnnotationSchService;
 @Service
 public class AnnotationSchServiceImpl implements AnnotationSchService {
 	
-	@Scheduled(cron="0/1 * * * * ?")
+	@Scheduled(cron="* 50 * * * ?")
 	@Override
 	public void printMessege() {
 		System.out.println("annotation @Scheduled cron(" + new Date() + ")");

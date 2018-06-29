@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- jobLauncher -->
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+		<!-- 異步處理 -->
+		<!-- <property name="taskExecutor"> -->
+		<!-- <bean class="org.springframework.core.task.SimpleAsyncTaskExecutor" 
+			/> -->
+		<!-- </property> -->
+	</bean>
+
+	<!-- jobRepository -->
+	<!-- the JobRepository provides CRUD operations on the meta-data -->
+	<!-- bean id 不要異動, 否則 Job 設定須明確指定 -->
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+		<property name="databaseType" value="mysql" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- is working with the same tables, it too needs the ability to set a 
+			prefix: -->
+		<property name="tablePrefix" value="BATCH_" />
+		<property name="lobHandler" ref="defaultLobHandler" />
+	</bean>
+
+	<!-- JobExplorer -->
+	<!-- JobExplorer is a read-only version of the JobRepository -->
+	<bean id="jobExplorer"
+		class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="tablePrefix" value="BATCH_" />
+		<property name="lobHandler" ref="defaultLobHandler" />
+	</bean>
+
+	<!-- 避免使用到 OracleLobHandler, 需指定 DefaultLobHandler -->
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
+
+	<!-- JobOperator -->
+	<!-- operations are most useful when used together to perform common monitoring 
+		tasks such as stopping, restarting, or summarizing a Job, as is commonly 
+		done by batch operators. -->
+	<bean id="m3JobOperator"
+		class="org.springframework.batch.core.launch.support.SimpleJobOperator">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="jobRegistry" ref="jobRegistry" />
+		<property name="jobExplorer" ref="jobExplorer" />
+	</bean>
+
+	<!-- jobRegistry -->
+	<!-- A JobRegistry (and its parent interface JobLocator) is not mandatory, 
+		but it can be useful if you want to keep track of which jobs are available 
+		in the context. -->
+	<bean id="jobRegistry"
+		class="org.springframework.batch.core.configuration.support.MapJobRegistry" />
+		
+	<!-- JobRegistryBeanPostProcessor -->	
+    <!-- This is a bean post-processor that can register all jobs as they are created -->
+	<bean
+		class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor">
+		<property name="jobRegistry" ref="jobRegistry" />
+	</bean>
+
+</beans>
