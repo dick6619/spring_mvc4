@@ -11,10 +11,11 @@
 			">
 
 	<!-- JobDetailFactory -->
-	<!-- job1 -->
+	<!-- job1 sample, put jobDataMap, and auto set -->
 	<bean name="job1"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp" />
+		<!-- quartz.job是沒辦法自動呼叫set方法的，一定要放實例在這裡面才會呼叫 -->
 		<property name="jobDataMap">
 			<map>
 				<!-- 需實作序列化 -->
@@ -24,7 +25,7 @@
 		<property name="durability" value="true" />
 	</bean>
 	<bean id="printMessege" class="com.iii.emp.domain.PrintMessege" />
-    <!-- job2 -->
+	<!-- job2 configuration applicationContextSchedulerContextKey in scFactory-->
 	<bean name="job2"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp2" />
@@ -36,10 +37,22 @@
 		</property>
 		<property name="durability" value="true" />
 	</bean>
-	<!-- job3 -->
+	<!-- job3 use spring batch -->
 	<bean name="job3"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp3" />
+		<property name="jobDataMap">
+			<map>
+				<!-- application get beanName -->
+				<entry key="jobID" value="emp001" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	<!-- job4 use jobFactory and autowire annotation-->
+	<bean name="job4"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.iii.emp.batch.job001.JobEmp4" />
 		<property name="jobDataMap">
 			<map>
 				<!-- application get beanName -->
@@ -74,24 +87,36 @@
 		<property name="jobDetail" ref="job3" />
 		<property name="cronExpression" value="0/5 * * * * ?" />
 	</bean>
+	<!-- trigger4 -->
+	<bean id="trigger4"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job4" />
+		<property name="cronExpression" value="0/5 * * * * ?" />
+	</bean>
 
 	<!-- schedulerFactory -->
 	<bean id="schedulerFactoryBean"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="trigger1" />
-				<ref bean="trigger2" />
-				<ref bean="trigger3" />
+				<!-- <ref bean="trigger1" /> -->
+				<!-- <ref bean="trigger2" /> -->
+				<!-- <ref bean="trigger3" /> -->
+				<ref bean="trigger4" />
 			</list>
 		</property>
 		<!-- 資料庫存取觸發時間等等相關資訊(實現永續化) -->
 		<property name="dataSource" ref="dataSource" />
 		<property name="transactionManager" ref="transactionManager" />
-		<!-- <property name="jobFactory"> -->
-		<!-- <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory"/> -->
-		<!-- </property> -->
-		<!-- 可以拿到applicationContext -->
+		<!-- 在Quartz.JobDetail,Trigger內注入實體的方法之一(最方便...) -->
+		<!-- 參考spring官方，推薦 http://blog.btmatthews.com/?p=40 繼承 SpringBeanJobFactory， 
+			實作 ApplicationContextAware -->
+		<property name="jobFactory">
+			<bean
+				class="com.iii.framework.core.springbatch.quartz.AutowiringSpringBeanJobFactory" />
+		</property>
+		<!-- 在Quartz.JobDetail,Trigger內注入實體的方法之一 -->
+		<!-- 可以拿到applicationContext，在excute內從applicationContext去getBean -->
 		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
 		<!-- 覆蓋原來存在的實體 -->
 		<property name="overwriteExistingJobs" value="true" />

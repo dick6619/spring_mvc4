@@ -9,32 +9,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import com.iii.emp.batch.service.MessegePrintService;
 import com.iii.framework.core.springbatch.quartz.BatchUtil;
 import com.iii.framework.core.springbatch.service.CoreBatchService;
 
 @DisallowConcurrentExecution
-public class JobEmp3 extends QuartzJobBean {
+public class JobEmp4 extends QuartzJobBean {
 
+	// 一概放致jobDataMap, 直接取。或是加入set方法
 	private String jobID;
-
+	
+	@Autowired
+	private ApplicationContext applicationContext;
+	
+	@Autowired
+    private CoreBatchService coreBatchService;
+	
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		// 取得jobData
+		// 取得jobData...放入batch-job所需參數
 		JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
 		// 取得 jobDataMap中的key(jobID)
-		jobID = jobDataMap.getString("jobID");
+//		jobID = jobDataMap.getString("jobID");
 		try {
-			ApplicationContext applicationContext = (ApplicationContext) context.getScheduler().getContext()
-					.get("applicationContext");
-			// coreBatchService
-			CoreBatchService coreBatchService = (CoreBatchService) applicationContext.getBean("coreBatchService");
 			Job job = (Job) applicationContext.getBean(jobID);
 			coreBatchService.startJob(job, BatchUtil.getJobParameters(jobDataMap));
 		} catch (Exception e) {
 			//
-			System.out.println(e);
 		}
 	}
+
+	public void setJobID(String jobID) {
+		this.jobID = jobID;
+	}
+
+	
+	
 
 }

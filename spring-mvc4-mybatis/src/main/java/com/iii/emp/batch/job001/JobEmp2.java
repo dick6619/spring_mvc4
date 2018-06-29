@@ -9,7 +9,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.iii.emp.batch.service.MessegePrintService;
 
-//@DisallowConcurrentExecution
+@DisallowConcurrentExecution
 public class JobEmp2 extends QuartzJobBean {
 	
 	private String serviceID;

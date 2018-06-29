@@ -1,4 +1,4 @@
-package com.iii.emp.batch.job001;
+package com.iii.emp.quartz.job;
 
 import java.util.Date;
 

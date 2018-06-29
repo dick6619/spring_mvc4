@@ -7,7 +7,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.iii.emp.domain.PrintMessege;
 
-//@DisallowConcurrentExecution
+@DisallowConcurrentExecution
 public class JobEmp extends QuartzJobBean {
 
 	// 用jobDataMap注入的實例，需要set方法，且此物件需要實作Serializable

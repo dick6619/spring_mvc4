@@ -1,4 +1,4 @@
-package com.iii.emp.batch.service;
+package com.iii.framework.core.springbatch.service;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
