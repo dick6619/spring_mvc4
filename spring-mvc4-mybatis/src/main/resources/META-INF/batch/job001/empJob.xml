@@ -120,6 +120,8 @@
 		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
 		<!-- 覆蓋原來存在的實體 -->
 		<property name="overwriteExistingJobs" value="true" />
+		<!-- if true the scheduler will not allow this method to return 
+		     until all currently executing jobs have completed -->
 		<property name="waitForJobsToCompleteOnShutdown" value="false" />
 
 	</bean>
