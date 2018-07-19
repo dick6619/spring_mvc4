@@ -37,6 +37,27 @@ public class Test2 {
 		test2.getBin8(-128);
 		System.out.println("");
 		test2.getBin32(-2147483648);
+		
+		/*
+		 * 0 0 0 0  0
+		 * 0 0 0 1  1
+		 * 0 0 1 0  2
+		 * 0 0 1 1  3
+		 * 0 1 0 0  4
+		 * 0 1 0 1  5
+		 * 0 1 1 0  6
+		 * 0 1 1 1  7
+		 * 1 0 0 0  8
+		 * 1 0 0 1  9
+		 * 1 0 1 0  A
+		 * 1 0 1 1  B
+		 * 1 1 0 0  C
+		 * 1 1 0 1  D
+		 * 1 1 1 0  E
+		 * 1 1 1 1  F
+		 * */
+		System.out.println(0x0);
+		System.out.println(0xFF); // 11111111
 	}
 
 }
