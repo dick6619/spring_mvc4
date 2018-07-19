@@ -34,7 +34,7 @@ public class Test2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Test2 test2 = new Test2();
-		test2.getBin8(-128);
+		test2.getBin8(-32);
 		System.out.println("");
 		test2.getBin32(-2147483648);
 		
@@ -56,7 +56,9 @@ public class Test2 {
 		 * 1 1 1 0  E
 		 * 1 1 1 1  F
 		 * */
-		System.out.println(0x0);
+		System.out.println();
+		System.out.println(0x7FFFFFFF);
+		System.out.println(0x80000000);
 		System.out.println(0xFF); // 11111111
 	}
 
