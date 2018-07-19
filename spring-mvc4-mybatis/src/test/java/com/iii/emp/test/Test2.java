@@ -1,5 +1,6 @@
 package com.iii.emp.test;
 
+// 算術的 shift
 public class Test2 {
 
 	// 8bit
