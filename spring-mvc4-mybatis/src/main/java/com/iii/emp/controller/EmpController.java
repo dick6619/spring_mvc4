@@ -23,7 +23,7 @@ import com.iii.emp.service.EmpService;
 @RequestMapping("/employee")
 public class EmpController {
 
-//	@Resource
+	// @Resource
 	@Autowired
 	@Qualifier("empServiceImpl")
 	private EmpService empService;

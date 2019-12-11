@@ -15,7 +15,7 @@ public class CallSOAP {
 
 	// 格式對應soap ui
 	public static void main(String args[]) {
-		String soapEndpointUrl = "http://localhost:8080/spring-mvc4-jpa/soap/iii/emp/ws001";
+		String soapEndpointUrl = "http://localhost:8080/spring-mvc4-mybatis/soap/iii/emp/ws001";
 		String soapAction = "";
 
 		callSoapWebService(soapEndpointUrl, soapAction);

@@ -4,12 +4,23 @@ public class Test {
 
 	public static void main(String[] args) {
 		Test t = new Test();
-		System.out.println(t.mult(10, 3));
-		System.out.println(t.sum(10));
+		// System.out.println(t.mult(10, 3));
+		// System.out.println(t.sum(10));
 		// System.out.println(t.test(10));
-		System.out.println(t.f(6));
-		System.out.println(t.fibonacci(4));
+		// System.out.println(t.f(6));
+		// System.out.println(t.fibonacci(4));
+		int a[] = { 8, 15, 23, 30, 7, 2, 10, 13, 6, 5 };
+		for (int j = 4; j >= 1; j--) {
+			a = t.func(j, 9, a);
 
+//			for (int i = 0; i < a.length; i++) {
+//				System.out.print(a[i] + ",");
+//			}
+//			System.out.println(a[1]);
+
+		}
+		System.out.println(a[1]);
+		System.out.println(7>>1);
 	}
 
 	int f(int n) {
@@ -48,23 +59,33 @@ public class Test {
 	}
 
 	int fibonacci(int n) {
-		System.out.println("call");
 		int result = 0;
 		if (n == 0) {
 			return 0;
 		} else if (n == 1) {
 			return 1;
 		} else {
-			int f_1 = fibonacci(n - 1);
-			//
-			int f_2 = fibonacci(n - 2);
-			result = f_1 + f_2;
+			result = fibonacci(n - 1) + fibonacci(n - 2);
 		}
 		return result;
-		/*
-		 *
-		 * 
-		 * 
-		 * */
 	}
+
+	int[] func(int s, int e, int[] a) {
+
+		int i, r;
+		r = a[s];
+		for (i = s * 2; i <= e; i = i * 2) {
+			if (i < e && a[i] < a[i + 1]) {
+				i++;
+			}
+			if (r > a[i]) {
+				break;
+			}
+			a[i / 2] = a[i];
+		}
+		a[i / 2] = r;
+		
+		return a;
+	}
+
 }
