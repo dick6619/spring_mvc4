@@ -1,10 +1,5 @@
 import java.util.Date;
-
-import com.google.gson.Gson;
-
 public class Block {
-
-	//
 	public String preHash;
 	public Long time;
 	public String messeges;
@@ -25,9 +20,6 @@ public class Block {
 	// 算出來256位數， 要求前n位要是0，前面的n越多就越難算
 	// 其他動不了的能動的就是隨機數，所以要一個一個試隨機數，直到算到要求的n個0
 	// 每個人計算時的題目的難度都是不一樣的，因為頭部相同外，每個人打包的帳單不同，個人訊息，時間也是不一樣的
-	// 總體平均誰的計算能力更強誰就更有機會打包
-	// 難度的設置這n是這麼確定的?，1/2^n
-	// 比特幣要求10分鐘一個塊
 	public String calculateHash() {
 		String calculatedhash = CodingUtil
 				.applySha256(preHash + Long.toString(time) + Integer.toString(nonce) + messeges);

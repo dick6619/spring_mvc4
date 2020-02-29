@@ -11,7 +11,7 @@ public class CodingUtil {
 
 			StringBuffer hexString = new StringBuffer();
 			for (int i = 0; i < hash.length; i++) {
-				//  1111.1111 
+				//  11111111 
 				//&   hash[i]
 				//-------------
 				String hex = Integer.toHexString(0xff & hash[i]);
