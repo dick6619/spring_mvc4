@@ -3,7 +3,7 @@ class LinkedList {
 
 	private Node firstNode;
 	private int size;
-	
+
 	public boolean isEmpty() {
 		return size == 0 ? true : false;
 	}
@@ -17,14 +17,14 @@ class LinkedList {
 			firstNode.setName(name);
 			size++;
 		}
-		
+
 		if (index == 0 && firstNode != null) {
 			Node insertNode = new Node(name);
 			insertNode.setNextNode(firstNode);
 			firstNode = insertNode;
 			size++;
 		}
-		
+
 		if (firstNode != null) {
 			Node preNode = firstNode;
 			for (int i = 0; i < index - 1; i++) {
@@ -72,7 +72,7 @@ class LinkedList {
 			return firstNode.getName();
 		}
 		Node resultNode = firstNode;
-
+		// 每次都要滾回圈從最開始找到最後
 		for (int i = 0; i < index; i++) {
 			resultNode = resultNode.getNextNode();
 		}
