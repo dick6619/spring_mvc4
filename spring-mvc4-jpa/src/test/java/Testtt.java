@@ -16,6 +16,7 @@ public class Testtt {
 		Stack<String> stack = new Stack<String>();
 		List<String> strArr = new ArrayList<String>();
 		for (String token : tokens) {
+			// 左括號除了優先權最小之外，也不參與權重比較是否要丟出的邏輯，只有在遇到右括號，才會起作用
 			if ("(".equals(token)) {
 				stack.push(token);
 			} else if (token.matches("[-+*/%]")) {

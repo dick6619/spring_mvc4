@@ -45,16 +45,15 @@ public class BinarySearchTree {
 		return root;
 	}
 
-
 	void insert(int key) {
 		if (this.root == null) {
 			this.root = new TreeNode(key);
-		}
-		else {
+		} else {
 			// recursive
 			insert(this.root, key);
 		}
 	}
+
 	// recursive
 	void insert(TreeNode root, int key) {
 		// node < root key
@@ -77,13 +76,26 @@ public class BinarySearchTree {
 	}
 
 	void traverseInOrder(TreeNode node) {
-		if (node.getLeft() != null) {
-			traverseInOrder(node.getLeft());
+
+		if (node == null) {
+			System.out.println();
+		} else {
+			// L
+			if (node.getLeft() != null) {
+				traverseInOrder(node.getLeft());
+			}
+			// D
+			System.out.print(node.getKey() + ",");
+			// R
+			if (node.getRight() != null) {
+				traverseInOrder(node.getRight());
+			}
 		}
-		System.out.println(node.getKey());
-		if (node.getRight() != null) {
-			traverseInOrder(node.getRight());
-		}
+	}
+
+	void traverseInOrderByLoop(TreeNode node) {
+
+
 	}
 
 	public static void main(String[] args) {
