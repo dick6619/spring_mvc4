@@ -26,7 +26,6 @@ public class EmpMapper implements RowMapper<EmpVO> {
 		deptVO.setDname(map.getString("dname"));
 		//
 		empVO.setDeptVO(deptVO);
-//
 		return empVO;
 	}
 
