@@ -18,7 +18,7 @@ import com.iii.emp.domain.EmpVO;
 public class DeptDAOImpl implements DeptDAO {
 
 	@PersistenceContext
-	public EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Override
 	public DeptVO insert(DeptVO deptVO) {

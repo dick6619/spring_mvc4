@@ -13,14 +13,27 @@ public class Test {
 		for (int j = 4; j >= 1; j--) {
 			a = t.func(j, 9, a);
 
-//			for (int i = 0; i < a.length; i++) {
-//				System.out.print(a[i] + ",");
-//			}
-//			System.out.println(a[1]);
+			// for (int i = 0; i < a.length; i++) {
+			// System.out.print(a[i] + ",");
+			// }
+			// System.out.println(a[1]);
 
 		}
 		System.out.println(a[1]);
-		System.out.println(7>>1);
+		System.out.println(7 >> 1);
+
+		System.out.println("test" + t.fib2(6));
+	}
+
+	int fib(int n) {
+
+		if (n == 1) {
+			return 1;
+		} else if (n == 0) {
+			return 0;
+		} else {
+			return fib(n - 1) + fib(n - 2);
+		}
 	}
 
 	int f(int n) {
@@ -84,8 +97,25 @@ public class Test {
 			a[i / 2] = a[i];
 		}
 		a[i / 2] = r;
-		
+
 		return a;
+	}
+
+	// 0 1 2 3 4 5 6 7
+	// 0 1 1 2 3 5 8 13
+	int fib2(int n) {
+		int a = 0, b = 1, sum = 0;
+		if (n == 0)
+			return 0;
+		if (n == 1)
+			return 1;
+		for (int i = 2; i <= n; i++) {
+			sum = a + b;
+			a = b;
+			b = sum;
+		}
+		return sum;
+
 	}
 
 }

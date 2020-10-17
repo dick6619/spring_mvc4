@@ -14,7 +14,7 @@ import com.iii.emp.domain.Book;
 public class TransationBDAOImpl implements TransationBDAO {
 
 	@PersistenceContext
-	public EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	@Override

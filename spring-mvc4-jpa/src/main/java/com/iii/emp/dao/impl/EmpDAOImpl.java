@@ -30,7 +30,7 @@ public class EmpDAOImpl implements EmpDAO {
 	 */
 
 	@PersistenceContext
-	public EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Transactional
 	@Override

@@ -14,7 +14,7 @@ import com.iii.emp.domain.Book;
 public class TransationADAOImpl implements TransationADAO {
 
 	@PersistenceContext
-	public EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
