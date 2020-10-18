@@ -22,7 +22,7 @@ public class Test {
 		System.out.println(a[1]);
 		System.out.println(7 >> 1);
 
-		System.out.println("test" + t.fib2(6));
+		System.out.println("test" + t.bi(4, 2));
 	}
 
 	int fib(int n) {
@@ -42,6 +42,7 @@ public class Test {
 		return n * f(n - 1);
 
 	}
+
 	//
 	int mult(int a, int b) {
 		if (b == 1) {
@@ -116,6 +117,23 @@ public class Test {
 		}
 		return sum;
 
+	}
+
+	// 非遞迴版本
+	int bi(int n, int m) {
+
+		int denominator = 1;
+		int fraction = 1;
+		// 分子
+		for (int i = n - m + 1; i <= n; i++) {
+			fraction *= i;
+		}
+		// 分母
+		for (int i = 1; i <= m; i++) {
+			denominator *= i;
+		}
+
+		return fraction / denominator;
 	}
 
 }
