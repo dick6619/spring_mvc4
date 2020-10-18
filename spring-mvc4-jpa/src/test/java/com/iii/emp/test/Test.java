@@ -119,8 +119,21 @@ public class Test {
 
 	}
 
-	// 非遞迴版本
-	int bi(int n, int m) {
+	//
+
+	// 遞迴
+	int binomial(int n, int m) {
+
+		if (n == m || m == 0) {
+			return 1;
+		} else {
+			return binomial(n - 1, m) + binomial(n - 1, m - 1);
+		}
+
+	}
+
+	// 非遞迴版本。integer能表示的大小有限 4bytes
+	int binomial2(int n, int m) {
 
 		int denominator = 1;
 		int fraction = 1;
