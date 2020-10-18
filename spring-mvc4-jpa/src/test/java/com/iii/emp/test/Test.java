@@ -3,47 +3,31 @@ package com.iii.emp.test;
 public class Test {
 
 	public static void main(String[] args) {
+
 		Test t = new Test();
-		// System.out.println(t.mult(10, 3));
-		// System.out.println(t.sum(10));
-		// System.out.println(t.test(10));
-		// System.out.println(t.f(6));
-		// System.out.println(t.fibonacci(4));
-		int a[] = { 8, 15, 23, 30, 7, 2, 10, 13, 6, 5 };
-		for (int j = 4; j >= 1; j--) {
-			a = t.func(j, 9, a);
 
-			// for (int i = 0; i < a.length; i++) {
-			// System.out.print(a[i] + ",");
-			// }
-			// System.out.println(a[1]);
-
-		}
-		System.out.println(a[1]);
-		System.out.println(7 >> 1);
-
-		System.out.println("test" + t.bi(4, 2));
-	}
-
-	int fib(int n) {
-
-		if (n == 1) {
-			return 1;
-		} else if (n == 0) {
-			return 0;
-		} else {
-			return fib(n - 1) + fib(n - 2);
-		}
-	}
-
-	int f(int n) {
-		if (n == 0)
-			return 1;
-		return n * f(n - 1);
-
+		System.out.println(t.gcd(50, 24));
 	}
 
 	//
+	public int count = 0;
+
+	// callCountTest(7)呼叫了幾次
+	int callCountTest(int n) {
+		count++;
+		int result = 0;
+		if (n <= 0) {
+			return 0;
+		} else if (n == 1) {
+			return 1;
+		} else {
+			result = callCountTest(n - 3) + callCountTest(n - 2) + callCountTest(n - 2);
+		}
+
+		return result;
+	}
+
+	// a*b乘法遞迴
 	int mult(int a, int b) {
 		if (b == 1) {
 			return a;
@@ -52,26 +36,44 @@ public class Test {
 		}
 	}
 
-	int sum(int n) {
+	// summation 遞迴
+	int summation(int n) {
 		if (n == 1) {
 			return 1;
 		} else {
-			return sum(n - 1) + n;
+			return summation(n - 1) + n;
 		}
 	}
 
-	int test(int x) {
-		int result = 0;
-		if (x <= 0) {
-			return 0;
-		} else if (x == 1) {
+	// summation 非遞迴
+	int summation2(int n) {
+		int sum = 0;
+		for (int i = 1; i <= n; i++) {
+			sum += i;
+		}
+		return sum;
+
+	}
+
+	// n階層遞迴
+	int f(int n) {
+		if (n == 0) {
 			return 1;
 		} else {
-			result = test(x - 3) + test(x - 2) + test(x - 2);
+			return n * f(n - 1);
+		}
+	}
+
+	// n階層非遞迴
+	int f2(int n) {
+		int result = 1;
+		for (int i = 1; i < n; i++) {
+			result *= i;
 		}
 		return result;
 	}
 
+	// 費式數列遞迴
 	int fibonacci(int n) {
 		int result = 0;
 		if (n == 0) {
@@ -84,27 +86,8 @@ public class Test {
 		return result;
 	}
 
-	int[] func(int s, int e, int[] a) {
-
-		int i, r;
-		r = a[s];
-		for (i = s * 2; i <= e; i = i * 2) {
-			if (i < e && a[i] < a[i + 1]) {
-				i++;
-			}
-			if (r > a[i]) {
-				break;
-			}
-			a[i / 2] = a[i];
-		}
-		a[i / 2] = r;
-
-		return a;
-	}
-
-	// 0 1 2 3 4 5 6 7
-	// 0 1 1 2 3 5 8 13
-	int fib2(int n) {
+	// 費式數列非遞迴
+	int fibonacci2(int n) {
 		int a = 0, b = 1, sum = 0;
 		if (n == 0)
 			return 0;
@@ -119,9 +102,7 @@ public class Test {
 
 	}
 
-	//
-
-	// 遞迴
+	// 帕斯卡遞迴
 	int binomial(int n, int m) {
 
 		if (n == m || m == 0) {
@@ -132,7 +113,7 @@ public class Test {
 
 	}
 
-	// 非遞迴版本。integer能表示的大小有限 4bytes
+	// 帕斯卡非遞迴版本。integer能表示的大小有限 4bytes
 	int binomial2(int n, int m) {
 
 		int denominator = 1;
@@ -147,6 +128,15 @@ public class Test {
 		}
 
 		return fraction / denominator;
+	}
+
+	// 最大公因數遞迴
+	int gcd(int n, int m) {
+		if (m == 0)
+			return n;
+		else {
+			return gcd(m, n % m);
+		}
 	}
 
 }
