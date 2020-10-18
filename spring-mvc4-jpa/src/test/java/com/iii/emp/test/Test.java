@@ -19,37 +19,6 @@ public class Test {
 			// System.out.println(a[1]);
 
 		}
-<<<<<<< HEAD
-		// System.out.println(a[1]);
-		// System.out.println(7 >> 1);
-		System.out.println(t.b(4, 2));
-	}
-
-	int b(int n, int m) {
-
-		/*
-		 * n!/ m!(n-m)! = p(n,m) / m!
-		 * 
-		 * 
-		 * 
-		 */
-
-		int fraction = 1;
-		int denominator = 1;
-
-		for (int i = n - m + 1, j = 1; i <= n; i++, j++) {
-			fraction = fraction * i;
-			// 建立在n>=m的前提
-			if (n > j) {
-				denominator = denominator * j;
-			}
-		}
-		// for (int i = 1; i <= m; i++) {
-		// denominator = denominator * i;
-		// }
-
-		return fraction / denominator;
-=======
 		System.out.println(a[1]);
 		System.out.println(7 >> 1);
 
@@ -65,10 +34,6 @@ public class Test {
 		} else {
 			return fib(n - 1) + fib(n - 2);
 		}
-<<<<<<< Updated upstream
-=======
->>>>>>> 0b92014d519f0e7fd8609f4c6c3eb0b1154a3e33
->>>>>>> Stashed changes
 	}
 
 	int f(int n) {
