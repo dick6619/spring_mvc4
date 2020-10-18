@@ -42,7 +42,7 @@ public class Test {
 		return n * f(n - 1);
 
 	}
-
+	//
 	int mult(int a, int b) {
 		if (b == 1) {
 			return a;
