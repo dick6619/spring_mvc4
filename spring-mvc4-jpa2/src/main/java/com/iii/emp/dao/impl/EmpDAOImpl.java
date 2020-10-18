@@ -93,7 +93,7 @@ public class EmpDAOImpl implements EmpDAO {
 	public List<EmpVO> getEmps() {
 
 		List<EmpVO> empVOs = (List<EmpVO>) jdbcTemplate.query(
-				"select * from emp2 emp join dept2 dep on emp.deptno = dep.deptno",
+				"SELECT * FROM emp2 AS emp INNER JOIN dept2 AS dep ON emp.deptno = dep.deptno",
 				new ResultSetExtractor<List<EmpVO>>() {
 					@Override
 					public List<EmpVO> extractData(ResultSet rs) throws SQLException {

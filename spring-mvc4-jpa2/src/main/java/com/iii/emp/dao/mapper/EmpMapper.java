@@ -11,19 +11,19 @@ import com.iii.emp.domain.EmpVO;
 public class EmpMapper implements RowMapper<EmpVO> {
 
 	@Override
-	public EmpVO mapRow(ResultSet map, int arg1) throws SQLException {
+	public EmpVO mapRow(ResultSet rs, int arg1) throws SQLException {
 		//
 		EmpVO empVO = new EmpVO();
-		empVO.setEmpno(map.getInt("empno"));
-		empVO.setEname(map.getString("ename"));
-		empVO.setHiredate(map.getDate("hiredate"));
-		empVO.setJob(map.getString("job"));
-		empVO.setSal(map.getDouble("sal"));
-		empVO.setComm(map.getDouble("comm"));
+		empVO.setEmpno(rs.getInt("empno"));
+		empVO.setEname(rs.getString("ename"));
+		empVO.setHiredate(rs.getDate("hiredate"));
+		empVO.setJob(rs.getString("job"));
+		empVO.setSal(rs.getDouble("sal"));
+		empVO.setComm(rs.getDouble("comm"));
 		//
 		DeptVO deptVO = new DeptVO();
-		deptVO.setDeptno(map.getInt("deptno"));
-		deptVO.setDname(map.getString("dname"));
+		deptVO.setDeptno(rs.getInt("deptno"));
+		deptVO.setDname(rs.getString("dname"));
 		//
 		empVO.setDeptVO(deptVO);
 		return empVO;
