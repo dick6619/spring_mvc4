@@ -1,17 +1,26 @@
 package com.iii.emp.test;
 
+/**
+ * 1. 遞迴在演算法內是button up的一種<br>
+ * 2. 也是divide and conquer，將問題越切越小，直到找到答案，再反解回去<br>
+ * 3. 以上得知是收斂特性<br>
+ * 4. merge sort合併排序，也是。<br>
+ * 
+ */
 public class Test {
 
 	public static void main(String[] args) {
-
-		Test t = new Test();
-		System.out.println(t.binomial(8, 2));
-		System.out.println(t.binomial2(8, 2));
-		System.out.println(t.binomial3(8, 2));
+		Test fuctionTest = new Test();
+		System.out.println(fuctionTest.ack(2, 2));
+		System.out.println(fuctionTest.gcd2(4, 0));
+		System.out.println(fuctionTest.gcd(2, 8));
+		int a = 2;
+		int b = 1;
 	}
 
 	// 深度變數測試次數
 	public int count = 0;
+
 	// 題目callCountTest(7)呼叫了幾次?
 	int callCountTest(int n) {
 		count++;
@@ -156,7 +165,7 @@ public class Test {
 
 	}
 
-	// 最大公因數遞迴
+	/** GCD最大公因數遞迴 */
 	int gcd(int n, int m) {
 		if (m == 0)
 			return n;
@@ -164,9 +173,86 @@ public class Test {
 			return gcd(m, n % m);
 		}
 	}
-	
+
+	/** GCD非遞迴 */
+	int gcd2(int n, int m) {
+
+		if (m == 0) {
+			return n;
+		}
+		int tmep = -1;
+		while (m != 0) {
+			tmep = m;
+			m = n % m;
+			n = tmep;
+		}
+		return n;
+	}
+
+	/** GCD非遞迴，輾轉相除 */
+	int gcd3(int n, int m) {
+		while (n != 0 && m != 0) {
+			if (n > m) {
+				n = n % m;
+			} else {
+				m = m % n;
+			}
+		}
+		if (n == 0) {
+			return m;
+		} else {
+			return n;
+		}
+	}
+
+	/**
+	 * 阿克曼函數<br>
+	 * definition:<br>
+	 * Ackerman(m,n): 1.n+1, if m=0; 2.a(m-1, 1), if n=0; 3.a(m-1, a(m, n-1))
+	 * otherwise;
+	 * 
+	 * ack(1,2) = 4<br>
+	 * ack(2.1) = 5<br>
+	 * ack(2,2) = 7<br>
+	 */
+	int ack(int m, int n) {
+		if (m == 0) {
+			return n + 1;
+		} else if (n == 0) {
+			return ack(m - 1, 1);
+		} else {
+			return ack(m - 1, ack(m, n - 1));
+		}
+	}
+
+	/**
+	 * 排序問題
+	 */
 	// 二元樹
 	// 低等排序
+	int[] insertionSort(int[] arr) {
+		return null;
+	}
+
+	int[] selectionSort(int[] arr) {
+		return null;
+	}
+
+	int[] bubbleSort(int[] arr) {
+		return null;
+	}
+
 	// 高等排序
+	int[] quickSort(int[] arr) {
+		return null;
+	}
+
+	int[] mergeSort(int[] arr) {
+		return null;
+	}
+
+	int[] heapSort(int[] arr) {
+		return null;
+	}
 
 }
