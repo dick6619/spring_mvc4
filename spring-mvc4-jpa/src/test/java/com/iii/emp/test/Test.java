@@ -249,6 +249,47 @@ public class Test {
 	}
 
 	/**
+	 * Hanoi(河內塔)<BR>
+	 * 1. 從A移動n-1,到B<BR>
+	 * 2. 從A將最大的移動到C<BR>
+	 * 3. 把B上的n-1個塔移動到C<BR>
+	 * 
+	 * n個塔，T(n) = T(n - 1) + 1 + T(n - 1) = 2T(n - 1) + 1;<br>
+	 * 
+	 * T(n) = 2^1T(n-1)+1<br>
+	 * = 2^2T(n-2)+2+1<br>
+	 * = 2^3T(n-3)+4+2+1<br>
+	 * = 2^4T(n-4)+8+4+2+1<br>
+	 * ....<br>
+	 * = 2^nT(n-n)+2^n-1+....+4+2+1<br>
+	 * 前面為0，算後面等比級數，0~n-1項共n項．依等比級數公式，a(1-r^n) / 1-r = 1-2^n / -1 = (2^n) -1 <br>
+	 * 得知結果為(2^n) -1次<br>
+	 * Big0(2^n)<br>
+	 *
+	 * @param n:
+	 *            disk數目
+	 * @param a:
+	 *            source
+	 * @param b:
+	 *            bridge
+	 * @param c:
+	 *            target
+	 */
+	void hanoi(int n, Object a, Object b, Object c) {
+		// 1個直接移動至target
+		if (n == 1) {
+			// move disc from a to c
+		} else {
+			// step 1
+			hanoi(n - 1, a, c, b);
+			// step 2
+			// move disc from a to c
+			// step 3
+			hanoi(n - 1, b, a, c);
+		}
+	}
+
+	/**
 	 * 排序問題
 	 */
 	// 二元樹
