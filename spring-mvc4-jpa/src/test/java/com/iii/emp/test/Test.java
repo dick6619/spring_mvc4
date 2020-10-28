@@ -13,7 +13,9 @@ public class Test {
 		Test fuctionTest = new Test();
 		System.out.println(fuctionTest.ack(2, 2));
 		System.out.println(fuctionTest.gcd2(4, 0));
-		System.out.println(fuctionTest.gcd(2, 8));
+		System.out.println(fuctionTest.gcd(0, 4));
+		System.out.println(fuctionTest.pow(-2, 9));
+		System.out.println(fuctionTest.pow2(-2, 9));
 		int a = 2;
 		int b = 1;
 	}
@@ -176,10 +178,6 @@ public class Test {
 
 	/** GCD非遞迴 */
 	int gcd2(int n, int m) {
-
-		if (m == 0) {
-			return n;
-		}
 		int tmep = -1;
 		while (m != 0) {
 			tmep = m;
@@ -223,6 +221,31 @@ public class Test {
 		} else {
 			return ack(m - 1, ack(m, n - 1));
 		}
+	}
+
+	/**
+	 * 求x的y次方，此function求y>=0狀況，不探討y<0 若y < 0 則求出來為倒數<br>
+	 * 遞迴版本<br>
+	 * 
+	 */
+
+	int pow(int x, int y) {
+		if (y == 0) {
+			return 1;
+		} else {
+			return x * pow(x, y - 1);
+		}
+	}
+
+	/**
+	 * 非遞迴版本
+	 */
+	int pow2(int x, int y) {
+		int count = 1;
+		for (int i = 1; i <= y; i++) {
+			count *= x;
+		}
+		return count;
 	}
 
 	/**
