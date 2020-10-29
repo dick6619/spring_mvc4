@@ -16,8 +16,9 @@ public class Test {
 		System.out.println(fuctionTest.gcd(0, 4));
 		System.out.println(fuctionTest.pow(-2, 9));
 		System.out.println(fuctionTest.pow2(-2, 9));
-		int a = 2;
-		int b = 1;
+
+		String[] eles = { "A", "B", "C" };
+		fuctionTest.perm(eles, 0, 2);
 	}
 
 	// 深度變數測試次數
@@ -289,6 +290,48 @@ public class Test {
 			hanoi(n - 1, b, a, c);
 		}
 	}
+
+	/**
+	 * 4個盤子 {[2^(n/2)] -1} * 3
+	 */
+	void hanoi(int n, Object a, Object b, Object c, Object d) {
+		if (n == 1) {
+			// move disc from a to d
+		} else {
+			// step 1
+			hanoi(n / 2, a, c, d, b);
+			// step 2
+			hanoi(n / 2, a, c, c, d);
+			// step 3
+			hanoi(n / 2, b, a, c, d);
+		}
+	}
+
+	/**
+	 * 排列組合遞迴印出所有可能
+	 */
+	void perm(String[] eles, int start, int end) {
+
+		if (start == end) {
+			for (int i = 0; i <= end; i++) {
+				System.out.print(eles[i]);
+			}
+			System.out.print(",");
+		} else {
+			for (int i = start; i <= end; i++) {
+				String temp = eles[start];
+				eles[start] = eles[i];
+				eles[i] = temp;
+
+				perm(eles, start + 1, end);
+
+				String temp1 = eles[start];
+				eles[start] = eles[i];
+				eles[i] = temp1;
+			}
+		}
+	}
+
 
 	/**
 	 * 排序問題
