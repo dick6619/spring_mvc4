@@ -17,8 +17,9 @@ public class Test {
 		System.out.println(fuctionTest.pow(-2, 9));
 		System.out.println(fuctionTest.pow2(-2, 9));
 
-		String[] eles = { "A", "B", "C" };
-		fuctionTest.perm(eles, 0, 2);
+		// fuctionTest.hanoi(4, 'A', 'B', 'C');
+
+		fuctionTest.hanoi(8, 'A', 'B', 'C', 'D');
 	}
 
 	// 深度變數測試次數
@@ -277,32 +278,69 @@ public class Test {
 	 * @param c:
 	 *            target
 	 */
-	void hanoi(int n, Object a, Object b, Object c) {
+	void hanoi(int n, char a, char b, char c) {
 		// 1個直接移動至target
 		if (n == 1) {
 			// move disc from a to c
+			System.out.println("move disc from" + a + " to " + c);
 		} else {
-			// step 1
+			// step 1 : 將n-1個盤子，由A透過中繼C移至B
 			hanoi(n - 1, a, c, b);
-			// step 2
-			// move disc from a to c
-			// step 3
+			// step 2 : 剩下的盤子由A移至C
+			System.out.println("move disc from" + a + " to " + c);
+			// step 3 : 最後將B上的n-1個盤子移至C
 			hanoi(n - 1, b, a, c);
 		}
 	}
 
 	/**
-	 * 4個盤子 {[2^(n/2)] -1} * 3
+	 * 4個棍子，證明8盤最佳解33步
+	 *  step 1: m取n/2個盤子, 從a過程會經過c和d到b(使用k根棍子)
+		move disc fromA to D
+		move disc fromA to C
+		move disc fromD to C
+		move disc fromA to D
+		move disc fromA to B
+		move disc fromD to B
+		move disc fromC to A
+		move disc fromC to B
+		move disc fromA to B
+		-------------------------
+		step 2 : 剩下n/2個盤子，因大小規則關係b棍無法使用，所以等同於3棍河內塔a,c,d(k-1根棍子)
+		move disc fromA to C
+		move disc fromA to D
+		move disc fromC to D
+		move disc fromA to C
+		move disc fromD to A
+		move disc fromD to C
+		move disc fromA to C
+		move disc fromA to D
+		move disc fromC to D
+		move disc fromC to A
+		move disc fromD to A
+		move disc fromC to D
+		-------------------------
+		step 3 : b上的n/2個盤子, 從b過程會經過a和c到d(使用k根棍子)
+		move disc fromB to C
+		move disc fromB to A
+		move disc fromC to A
+		move disc fromB to C
+		move disc fromB to D
+		move disc fromC to D
+		move disc fromA to B
+		move disc fromA to D
+		move disc fromB to D
 	 */
-	void hanoi(int n, Object a, Object b, Object c, Object d) {
+	void hanoi(int n, char a, char b, char c, char d) {
 		if (n == 1) {
 			// move disc from a to d
+			System.out.println("move disc from" + a + " to " + d);
 		} else {
-			// step 1
+			// step 1 : 將m個移至b棍
 			hanoi(n / 2, a, c, d, b);
-			// step 2
-			hanoi(n / 2, a, c, c, d);
-			// step 3
+			// step 2 : 大小規則只有k-1根棍子可以使用，等同3塔，將n-m個移至d棍
+			hanoi(n / 2, a, c, d);
+			// step 3 : 將b棍上m個移至d
 			hanoi(n / 2, b, a, c, d);
 		}
 	}
@@ -310,28 +348,27 @@ public class Test {
 	/**
 	 * 排列組合遞迴印出所有可能
 	 */
-	void perm(String[] eles, int start, int end) {
+	void perm(String[] elements, int start, int end) {
 
 		if (start == end) {
 			for (int i = 0; i <= end; i++) {
-				System.out.print(eles[i]);
+				System.out.print(elements[i]);
 			}
 			System.out.print(",");
 		} else {
 			for (int i = start; i <= end; i++) {
-				String temp = eles[start];
-				eles[start] = eles[i];
-				eles[i] = temp;
+				String temp = elements[start];
+				elements[start] = elements[i];
+				elements[i] = temp;
 
-				perm(eles, start + 1, end);
+				perm(elements, start + 1, end);
 
-				String temp1 = eles[start];
-				eles[start] = eles[i];
-				eles[i] = temp1;
+				String temp1 = elements[start];
+				elements[start] = elements[i];
+				elements[i] = temp1;
 			}
 		}
 	}
-
 
 	/**
 	 * 排序問題
