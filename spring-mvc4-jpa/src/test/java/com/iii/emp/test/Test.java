@@ -20,6 +20,12 @@ public class Test {
 		// fuctionTest.hanoi(4, 'A', 'B', 'C');
 
 		fuctionTest.hanoi(8, 'A', 'B', 'C', 'D');
+		fuctionTest.perm(new String[]{"1","2","3"}, 0, 2);
+		
+		
+		int i = 1;
+		
+		System.out.println(2*--i);
 	}
 
 	// 深度變數測試次數
