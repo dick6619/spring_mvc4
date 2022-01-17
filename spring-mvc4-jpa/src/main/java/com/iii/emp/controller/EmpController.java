@@ -18,6 +18,7 @@ import com.iii.emp.service.DeptService;
 import com.iii.emp.service.EmpService;
 
 /**
+ * RESTFUL
  * 1. project root + /employee : call this controller
  * 2. project root + /employee + /... : do URI mapping，call method
  * 3. and this controller access views
