@@ -1,6 +1,0 @@
-1. JDK8, 如果以上的版本會有些lib被刪除,導致出現錯誤。
-2. eclipse夾貓, context要設定db source, JNDI, JDBC的不同。
-3. 新版eclipse預設JDK17 會導致專案無法啟動, 要到頁籤WINDOWS設定去調整，另外也要下載JDK8 (installJRE/ compiler)
-
-4. spring boot 內嵌server
-5. edge server/ docker/ spring cloud?
