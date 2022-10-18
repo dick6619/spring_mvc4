@@ -7,10 +7,10 @@ package com.iii.emp.test;
  * 4. merge sort合併排序，也是。<br>
  * 
  */
-public class Test {
+public class Algo {
 
 	public static void main(String[] args) {
-		Test fuctionTest = new Test();
+		Algo fuctionTest = new Algo();
 		System.out.println(fuctionTest.ack(2, 2));
 		System.out.println(fuctionTest.gcd2(4, 0));
 		System.out.println(fuctionTest.gcd(0, 4));

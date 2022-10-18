@@ -11,9 +11,6 @@ import javax.servlet.ServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * spring 自己的濾器實作的內容跟最後一樣
- * */
 public class CharacterEncodingFilter implements Filter {
 	private String encoding;
 

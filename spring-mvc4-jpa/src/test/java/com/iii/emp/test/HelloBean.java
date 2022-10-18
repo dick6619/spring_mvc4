@@ -2,13 +2,10 @@ package com.iii.emp.test;
 
 import java.lang.reflect.Field;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.iii.framework.core.tools.utils.BeanUtil;
 import com.iii.framework.core.validation.DateDiff;
 
 @DateDiff(start = "strartDate", end = "endDate", diff = "<1Y")
@@ -64,29 +61,9 @@ public class HelloBean {
 	}
 
 	/**
-	 * 無法共用，因屬性成員修飾詞為private
-	 */
-	public Map<String, Object> toMap() throws Exception {
-		//
-		Map<String, Object> map = new LinkedHashMap<>();
-		for (Field field : this.getClass().getDeclaredFields()) {
-			map.put(field.getName(), field.get(this));
-		}
-		return map;
-	}
-
-	/**
 	 * 測試
 	 */
 	public static void main(String[] args) throws Exception {
-		HelloBean hello = new HelloBean();
-		hello.setName("PETER");
-		hello.setNumber(1607023);
-		
-		// HelloBean toMap() test
-		System.out.println("hello.toMap -> " + hello.toMap());
-		// BeanUtil toMap() test
-		System.out.println("BeanUtil.toMap -> " + BeanUtil.toMap(hello));
 
 	}
 
