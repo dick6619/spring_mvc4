@@ -9,6 +9,8 @@
 	<properties>
 		<spring.version>4.3.10.RELEASE</spring.version>
 		<hibernate.version>5.2.10.Final</hibernate.version>
+		<mysql.version>8.0.25</mysql.version>
+		
 		<!-- java version -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -78,6 +80,17 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
